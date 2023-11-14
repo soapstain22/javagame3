@@ -9,9 +9,9 @@ public class Player extends GameObject implements KeyListener, Sprite {
     int hp;
     double speed = 0.02;
     KeyListener keyin;
-    int headType;
-    int bodyType;
-    int legsType;
+    int headType = 0;
+    int bodyType = 0;
+    int legsType = 0;
     BufferedImage out = new BufferedImage(32, 32, 1);
 
     public void spawn(int i, int j) {
