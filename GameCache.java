@@ -21,10 +21,10 @@ public class GameCache {
     Map<String, Integer> ImageTracker;
 
     static void init() throws IOException {
-        heads = fillBuffer("Resources/img/player/body");
+        heads = fillBuffer("Resources/img/player/head");
         bodies = fillBuffer("Resources/img/player/body");
-        pants = fillBuffer("Resources/img/player/body");
-        shirt = fillBuffer("Resources/img/player/body");
+        pants = fillBuffer("Resources/img/player/pants");
+        shirt = fillBuffer("Resources/img/player/shirt");
     }
     private static BufferedImage[] gimmieBlocks() throws IOException {
         File f = new File("Resources/img/blockz.png");
@@ -62,9 +62,9 @@ public class GameCache {
         BufferedImage[][] pool = new BufferedImage[directions][frames];
         for (int j2 = 0; j2< directions; j2++) {
             for (int j = 0; j < frames; j++) {
-                pool[j2][j] = i.getSubimage(j2, j, directions, frames);
+                pool[j2][j] = i.getSubimage(j2, j, 32, 32);
             }
         }
-        return null;
+        return pool;
     }
 }

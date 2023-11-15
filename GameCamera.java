@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
 
 public class GameCamera extends Frame {
     Point2D tracking;
-
+    int fc;
     @Override
     public void paint(Graphics g) {
         // gameplan
@@ -31,9 +31,14 @@ public class GameCamera extends Frame {
                  * }
                  */
             }
-            for (int j = 0; j < Game.player.getDisplaying().length; j++) {
-                g.drawImage(Game.player.getDisplaying()[j], 224, 224, this);
-            }
+            g.setColor(Color.green);
+            g.drawString("Game.Player", 5, 40);
+            g.setColor(Color.CYAN);
+            g.drawString(Game.player.direction + "d " + Game.player.headType + "h " + Game.player.bodyType + "b "+ Game.player.legsType + "l ", 120, 40);
+            g.drawImage(GameCache.bodies[0][Game.player.direction][0], 224, 238, this);
+            g.drawImage(GameCache.pants[0][Game.player.direction][0], 224, 244, this);
+            g.drawImage(GameCache.heads[0][Game.player.direction][0], 224, 226, this);
+            fc +=1;
         }
         setVisible(true);
 

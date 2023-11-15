@@ -12,7 +12,6 @@ public class Player extends GameObject implements KeyListener, Sprite {
     int headType = 0;
     int bodyType = 0;
     int legsType = 0;
-    BufferedImage out = new BufferedImage(32, 32, 1);
 
     public void spawn(int i, int j) {
         this.setLocation(i, j);
@@ -20,24 +19,28 @@ public class Player extends GameObject implements KeyListener, Sprite {
 
     Player(int x, int y) throws IOException {
         super(x, y);
-        headType = 0;
-        bodyType = 0;
-        legsType = 0;
         }
 
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
+            this.direction = 0;
                 xinertia = -speed;
                 break;
             case KeyEvent.VK_RIGHT:
+            this.direction = 5;
+
                 xinertia = speed;
                 break;
             case KeyEvent.VK_UP:
+            this.direction = 1;
+
                 yinertia = -speed;
                 break;
             case KeyEvent.VK_DOWN:
+            this.direction = 2;
+
                 yinertia = speed;
                 break;
             default:
@@ -85,26 +88,9 @@ public class Player extends GameObject implements KeyListener, Sprite {
     }
 
     @Override
-    public BufferedImage getSprite(Direction d, int f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSprite'");
-    }
-
-    @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
-    @Override
-    BufferedImage[] getDisplaying() {
-        return new BufferedImage[]{
-            GameCache.pants[bodyType][spriteIndex][direction],
-            GameCache.bodies[bodyType][spriteIndex][direction],
-            GameCache.heads[bodyType][spriteIndex][direction],
-            GameCache.shirt[bodyType][spriteIndex][direction]
-            
-        };
-    }
-    
 }

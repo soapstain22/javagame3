@@ -13,10 +13,11 @@ public abstract class GameObject extends Point2D implements Comparator<Point2D>{
     double y;
     double xinertia;
     double yinertia;
-    int direction;
+    int direction = 0;
     int spriteIndex;
     int maxDir = 1;
     int maxSpr = 1;
+    BufferedImage[] face;
     final long uuid;
     static long validKeys = 0;
     void place(int x, int y){
@@ -47,7 +48,6 @@ public abstract class GameObject extends Point2D implements Comparator<Point2D>{
     void update(){
         x += xinertia;
         y += yinertia;
-        direction = Direction.spriteMatrix[1+Integer.compare((int)xinertia, 0)][1+Integer.compare((int)yinertia, 0)];
     }
     void spriteUpdate(){
         spriteIndex +=1;
@@ -57,8 +57,5 @@ public abstract class GameObject extends Point2D implements Comparator<Point2D>{
         uuid = validKeys;
         validKeys +=1; 
     }
-    
-    abstract BufferedImage[] getDisplaying();
-
     
 }

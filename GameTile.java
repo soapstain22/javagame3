@@ -13,7 +13,7 @@ public class GameTile {
     byte height;
     int type;
     public BufferedImage getIcon() {
-        return GameCache.items[type];
+        return GameCache.blocks[type];
     }
     
 }
