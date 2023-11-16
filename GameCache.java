@@ -1,13 +1,8 @@
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Stack;
 import javax.imageio.ImageIO;
 
 public class GameCache {

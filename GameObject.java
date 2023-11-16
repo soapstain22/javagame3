@@ -1,20 +1,15 @@
-import java.awt.Image;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Comparator;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-
 public abstract class GameObject extends Point2D implements Comparator<Point2D>{
+    public static GameObject[][] world;
     double x;
     double y;
     double xinertia;
     double yinertia;
     int direction = 0;
-    int spriteIndex;
+    int spriteIndex =0;
     int maxDir = 1;
     int maxSpr = 1;
     BufferedImage[] face;

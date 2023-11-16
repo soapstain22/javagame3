@@ -12,6 +12,8 @@ public class Player extends GameObject implements KeyListener, Sprite {
     int headType = 0;
     int bodyType = 0;
     int legsType = 0;
+    int px;
+    int py;
 
     public void spawn(int i, int j) {
         this.setLocation(i, j);
@@ -19,38 +21,34 @@ public class Player extends GameObject implements KeyListener, Sprite {
 
     Player(int x, int y) throws IOException {
         super(x, y);
-        }
+    }
 
     @Override
-    public void keyPressed(KeyEvent e) { // move this to a 2d array using Direction.toInt. eventually do this because we can get 8 direction positions so quick
+    public void keyPressed(KeyEvent e) { // move this to a 2d array using Direction.toInt. eventually do this because we
+        // can get 8 direction positions so quick
+
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
-            this.direction = 6;
-            this.spriteIndex +=1;
-
+                px = -1;
                 xinertia = -speed;
                 break;
             case KeyEvent.VK_RIGHT:
-            this.direction = 2;
-            this.spriteIndex +=1;
-
+                px = 1;
                 xinertia = speed;
                 break;
             case KeyEvent.VK_UP:
-            this.direction = 4;
-            this.spriteIndex +=1;
-
+                py = 1;
                 yinertia = -speed;
                 break;
             case KeyEvent.VK_DOWN:
-            this.direction = 0;
-            this.spriteIndex +=1;
-
+                py = -1;
                 yinertia = speed;
                 break;
             default:
                 break;
         }
+                this.direction = Direction.spriteMatrix[1+px][1+py];
+
         // TODO Auto-generated method stub
     }
 
@@ -59,21 +57,29 @@ public class Player extends GameObject implements KeyListener, Sprite {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
                 xinertia = 0;
+                px = 0;
                 break;
             case KeyEvent.VK_RIGHT:
                 xinertia = 0;
+                px = 0;
                 break;
             case KeyEvent.VK_UP:
                 yinertia = 0;
+                py = 0;
                 break;
             case KeyEvent.VK_DOWN:
                 yinertia = 0;
+                py = 0;
                 break;
             default:
                 break;
         }
         this.spriteIndex = 0;
+        System.out.println(1 + px);
+        System.out.println(1 + py);
+        this.direction = Direction.spriteMatrix[1+px][1+py];
     }
+
     @Override
     public int compare(Point2D o1, Point2D o2) {
         // TODO Auto-generated method stub
