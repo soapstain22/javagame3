@@ -12,6 +12,7 @@ public class GameTile {
     byte brightness;
     byte height;
     int type;
+    public Color color = new Color(200,255,200);
     public BufferedImage getIcon() {
         return GameCache.blocks[type];
     }

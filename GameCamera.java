@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 public class GameCamera extends Frame {
     Point2D tracking;
     int fc;
-    @Override
+    GameTile[][] loaded;
     public void paint(Graphics g) {
         // gameplan
         /*
@@ -14,15 +14,14 @@ public class GameCamera extends Frame {
          */
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
-                GameTile t = Game.gameMap.getTile(Game.player.x + i, Game.player.y + j);
                 // set color of background item
-                g.setColor(Color.BLUE);
+                g.setColor(Color.orange);
                 int offsetx = (((int) i * 32));
                 int offsety = (((int) j * 32));
                 int c = (int) (offsetx - (Game.player.x * 32) % 32);
                 int d = (int) (offsety - (Game.player.y * 32) % 32);
                 g.fillRect(c, d, 32, 32);
-                g.setColor(Color.RED);
+                g.setColor(Color.black);
                 g.drawRect(c + 1, d + 1, 30, 30);
                 /*
                  * visible = wrangleNear(tracking, d, i);

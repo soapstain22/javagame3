@@ -22,24 +22,29 @@ public class Player extends GameObject implements KeyListener, Sprite {
         }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) { // move this to a 2d array using Direction.toInt. eventually do this because we can get 8 direction positions so quick
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
-            this.direction = 0;
+            this.direction = 6;
+            this.spriteIndex +=1;
+
                 xinertia = -speed;
                 break;
             case KeyEvent.VK_RIGHT:
-            this.direction = 5;
+            this.direction = 2;
+            this.spriteIndex +=1;
 
                 xinertia = speed;
                 break;
             case KeyEvent.VK_UP:
-            this.direction = 1;
+            this.direction = 4;
+            this.spriteIndex +=1;
 
                 yinertia = -speed;
                 break;
             case KeyEvent.VK_DOWN:
-            this.direction = 2;
+            this.direction = 0;
+            this.spriteIndex +=1;
 
                 yinertia = speed;
                 break;
@@ -54,23 +59,20 @@ public class Player extends GameObject implements KeyListener, Sprite {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
                 xinertia = 0;
-                System.out.println("lef");
                 break;
             case KeyEvent.VK_RIGHT:
                 xinertia = 0;
-                System.out.println("rig");
                 break;
             case KeyEvent.VK_UP:
                 yinertia = 0;
-                System.out.println("up");
                 break;
             case KeyEvent.VK_DOWN:
                 yinertia = 0;
-                System.out.println("dow");
                 break;
             default:
                 break;
         }
+        this.spriteIndex = 0;
     }
     @Override
     public int compare(Point2D o1, Point2D o2) {
@@ -91,6 +93,12 @@ public class Player extends GameObject implements KeyListener, Sprite {
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
+    }
+
+    @Override
+    public BufferedImage getSprite(Direction d, int f) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getSprite'");
     }
 
 }

@@ -62,7 +62,7 @@ public class GameCache {
         BufferedImage[][] pool = new BufferedImage[directions][frames];
         for (int j2 = 0; j2< directions; j2++) {
             for (int j = 0; j < frames; j++) {
-                pool[j2][j] = i.getSubimage(j2, j, 32, 32);
+                pool[j2][j] = i.getSubimage(j2*32, j*32, 32, 32);
             }
         }
         return pool;
