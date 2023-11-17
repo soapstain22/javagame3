@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
 
 public class GameCamera extends Frame {
     Point2D tracking;

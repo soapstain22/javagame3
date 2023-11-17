@@ -1,5 +1,3 @@
-import java.awt.geom.Point2D;
-
 public class EntityTracker {
     int depth = 0;
     static EntityTracker root = new EntityTracker();

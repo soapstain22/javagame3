@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class Game {
     public static int TickCount = 0;
     public static GameMap gameMap;
+    public static Chatblob chatblob;
     public static GameCache gameCache;
     public static Player player;
     public static GameCamera gameCamera;
@@ -21,6 +22,7 @@ public abstract class Game {
         GameCache.init();
         Game.gameMap = new GameMap(2000,4);
         Game.player = new Player(10,10);
+        Game.chatblob = new Chatblob();
         Game.gameCamera = new GameCamera(player);
         Game.Load(null);
         Runnable tick = new Runnable() {
