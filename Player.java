@@ -4,7 +4,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Player extends GameObject implements KeyListener, Sprite {
+public class Player extends GameObject implements KeyListener {
     boolean alive = true;
     int hp;
     double speed = 0.02;
@@ -29,11 +29,11 @@ public class Player extends GameObject implements KeyListener, Sprite {
 
         switch (e.getKeyCode()) {
             case KeyEvent.VK_LEFT:
-                px = -1;
+                px = 1;
                 xinertia = -speed;
                 break;
             case KeyEvent.VK_RIGHT:
-                px = 1;
+                px = -1;
                 xinertia = speed;
                 break;
             case KeyEvent.VK_UP:
@@ -81,30 +81,8 @@ public class Player extends GameObject implements KeyListener, Sprite {
     }
 
     @Override
-    public int compare(Point2D o1, Point2D o2) {
-        // TODO Auto-generated method stub
-        if (this.distance(o1) < this.distance(o2)) {
-            return 1;
-        }
-        if (this.distance(o1) == this.distance(o2)) {
-            return 0;
-        }
-        if (this.distance(o1) > this.distance(o2)) {
-            return -1;
-        }
-        return 0;
-    }
-
-    @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
-
-    @Override
-    public BufferedImage getSprite(Direction d, int f) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSprite'");
-    }
-
 }

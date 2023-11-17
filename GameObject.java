@@ -2,14 +2,14 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Comparator;
-public abstract class GameObject extends Point2D implements Comparator<Point2D>{
+public abstract class GameObject extends Point2D{
     public static GameObject[][] world;
     double x;
     double y;
     double xinertia;
     double yinertia;
     int direction = 0;
-    int spriteIndex =0;
+    int spriteIndex = 0;
     int maxDir = 1;
     int maxSpr = 1;
     BufferedImage[] face;
@@ -47,7 +47,7 @@ public abstract class GameObject extends Point2D implements Comparator<Point2D>{
     void spriteUpdate(){
         spriteIndex +=1;
     }
-    GameObject(int x, int y) throws IOException{
+    GameObject(int x, int y){
     this.setLocation(x, y);
         uuid = validKeys;
         validKeys +=1; 

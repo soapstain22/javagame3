@@ -19,7 +19,7 @@ public abstract class Game {
     public static void main(String[] args) throws IOException {
         System.out.println("Game.main()");
         GameCache.init();
-        Game.gameMap = new GameMap(64,4);
+        Game.gameMap = new GameMap(2000,4);
         Game.player = new Player(10,10);
         Game.gameCamera = new GameCamera(player);
         Game.Load(null);
@@ -30,8 +30,6 @@ public abstract class Game {
         Game.player.update();
         System.out.printf("player|"+(int)player.y+"y %5s| ", (int)player.x+"x");
         System.out.printf("dir:"+player.direction+" %5s| %n", player.speed);
-
-
     }
 };
 

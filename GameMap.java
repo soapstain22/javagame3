@@ -2,15 +2,18 @@
 import java.util.Dictionary;
 
 public class GameMap {
-    ObjectTree mapper;
     private static GameTile[][] map;
+    public GameObject[] objex;
     final int size;
     public static Dictionary<String, GameObject> g;
     final public static long seed = 451679238;
 
     public GameMap(int size, int seed) {
         this.size = size;
-        map = new GameTile[size][size];    }
+        map = new GameTile[size][size];
+        objex = new GameObject[3];
+        objex[1] = new Rock(2, 4); 
+    }
 
     GameTile getTile(double d, double e) {
         int truex = (int) (d % size);

@@ -20,9 +20,10 @@ public class GameCache {
         bodies = fillBuffer("Resources/img/player/body");
         pants = fillBuffer("Resources/img/player/pants");
         shirt = fillBuffer("Resources/img/player/shirt");
+        blocks = clogBuffer("Resources/img/objects/foliage.png");
     }
-    private static BufferedImage[] gimmieBlocks() throws IOException {
-        File f = new File("Resources/img/blockz.png");
+    private static BufferedImage[] clogBuffer(String s) throws IOException {
+        File f = new File(s);
         BufferedImage b = ImageIO.read(f);
         int totalx = b.getWidth()/32;
         int totaly = b.getHeight()/32;

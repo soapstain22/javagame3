@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 public class GameCamera extends Frame {
     Point2D tracking;
@@ -30,6 +31,7 @@ public class GameCamera extends Frame {
                  * }
                  */
             }
+        }
             g.setColor(Color.green);
             g.drawString("Game.Player", 5, 40);
             g.setColor(Color.CYAN);
@@ -37,8 +39,13 @@ public class GameCamera extends Frame {
             g.drawImage(GameCache.bodies[0][Game.player.direction][Game.player.spriteIndex%3], 224, 238, this);
             g.drawImage(GameCache.pants[0][Game.player.direction][Game.player.spriteIndex%3], 224, 244, this);
             g.drawImage(GameCache.heads[0][Game.player.direction][0], 224, 226, this);
+            /*for (int i = 0; i < Game.gameMap.objex.length; i++) {
+                BufferedImage[] go = Game.gameMap.objex[i].face;
+                for (int j = 0; j < go.length; j++) {
+                    g.drawImage(go[j],(int)Game.gameMap.objex[i].x,(int)Game.gameMap.objex[i].y,this);
+                }   
+            }*/
             fc +=1;
-        }
         setVisible(true);
 
     }
