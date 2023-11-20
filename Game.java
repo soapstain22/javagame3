@@ -24,6 +24,8 @@ public abstract class Game {
         Game.player = new Player(10,10);
         Game.chatblob = new Chatblob();
         Game.gameCamera = new GameCamera(player);
+        GameWindow gw = new GameWindow();
+        gw.setVisible(true);
         Game.Load(null);
         Runnable tick = new Runnable() {
     public void run() {

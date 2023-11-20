@@ -2,6 +2,7 @@
 import java.util.Dictionary;
 
 public class GameMap {
+    public static Noize nz;
     private static GameTile[][] map;
     public GameObject[] objex;
     final int size;
@@ -9,10 +10,16 @@ public class GameMap {
     final public static long seed = 451679238;
 
     public GameMap(int size, int seed) {
+        nz = new Noize(size);
         this.size = size;
         map = new GameTile[size][size];
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                map[i][j] = new GameTile(nz.noise[i][j]);
+            }
+        }
         objex = new GameObject[3];
-        objex[1] = new Rock(2, 4); 
+        objex[1] = new Rock(2, 4);
     }
 
     GameTile getTile(double d, double e) {

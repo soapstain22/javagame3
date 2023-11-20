@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Comparator;
 public abstract class GameObject extends Point2D{
-    public static GameObject[][] world;
+    public static GameObject[] world;
     double x;
     double y;
     double xinertia;
@@ -52,5 +52,4 @@ public abstract class GameObject extends Point2D{
         uuid = validKeys;
         validKeys +=1; 
     }
-    
 }

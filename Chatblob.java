@@ -2,11 +2,15 @@ import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.Panel;
 
+import ChatInput;
+
 public class Chatblob extends Panel{
+    static ChatInput chatInput;
+    static ChatBrick chatBrick;
     Chatblob() {
         setLayout(null);
-        ChatInput chatInput = new ChatInput();
-        ChatBrick chatBrick = new ChatBrick();
+        chatInput = new ChatInput();
+        chatBrick = new ChatBrick();
         Button chatButton = new Button("Send");
         chatButton.setVisible(true);
         chatButton.setLocation(480+180,400);

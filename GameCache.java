@@ -11,7 +11,8 @@ public class GameCache {
     public static BufferedImage pants[][][]; // [type][frame][direction]
     public static BufferedImage heads[][][]; // [type][frame][direction]
     public static BufferedImage items[][][]; // [type][frame][direction]
-    public static BufferedImage blocks[]; // [type][frame][direction]
+    public static BufferedImage blocks[]; // 
+    public static BufferedImage heart[]; // 
 
     Map<String, Integer> ImageTracker;
 
@@ -21,6 +22,7 @@ public class GameCache {
         pants = fillBuffer("Resources/img/player/pants");
         shirt = fillBuffer("Resources/img/player/shirt");
         blocks = clogBuffer("Resources/img/objects/foliage.png");
+        heart = clogBuffer("Resources/img/ui/health.png");
     }
     private static BufferedImage[] clogBuffer(String s) throws IOException {
         File f = new File(s);

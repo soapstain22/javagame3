@@ -1,9 +1,10 @@
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Panel;
 import java.awt.geom.Point2D;
 
-public class GameCamera extends Frame {
+public class GameCamera extends Panel {
     Point2D tracking;
     int fc;
     GameTile[][] loaded;

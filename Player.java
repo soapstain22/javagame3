@@ -12,6 +12,8 @@ public class Player extends GameObject implements KeyListener {
     int legsType = 0;
     int px;
     int py;
+    int inhand = 0;
+    Item[] inventory = new Item[30];
 
     public void spawn(int i, int j) {
         this.setLocation(i, j);
@@ -83,4 +85,19 @@ public class Player extends GameObject implements KeyListener {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
+    boolean pickup(Item i){
+        return pickup(i,0);
+    }
+    boolean pickup(Item i, int index){
+        if (inventory[index] == null) {
+            inventory[index] = i;
+            return true;    
+        }
+        else if (index>30) {
+            return false;
+            
+        }
+        return pickup(i, (index+1)%30);
+    }
+    
 }
