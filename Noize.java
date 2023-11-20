@@ -30,7 +30,6 @@ public class Noize {
         int grad4 = (corner4 - corner2) / 6;
 
         // Calculate the noise value
-
         return grad1 + grad2 + grad3 + grad4;
 
     }

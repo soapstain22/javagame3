@@ -16,13 +16,13 @@ public class GameCamera extends Panel {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 // set color of background item
-                g.setColor(Color.orange);
                 int offsetx = (((int) i * 32));
                 int offsety = (((int) j * 32));
                 int c = (int) (offsetx - (Game.player.x * 32) % 32);
                 int d = (int) (offsety - (Game.player.y * 32) % 32);
+                g.setColor(Game.gameMap.getTile(Game.player.x + i, Game.player.y + j).color);
                 g.fillRect(c, d, 32, 32);
-                g.setColor(Color.black);
+                g.setColor(Game.gameMap.getTile(i, j).outline);
                 g.drawRect(c + 1, d + 1, 30, 30);
                 /*
                  * visible = wrangleNear(tracking, d, i);
