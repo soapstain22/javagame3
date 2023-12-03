@@ -20,16 +20,29 @@ public class GameCamera extends Panel {
                 int offsety = (((int) j * 32));
                 int c = (int) (offsetx - (Game.player.x * 32) % 32);
                 int d = (int) (offsety - (Game.player.y * 32) % 32);
-                g.setColor(Game.gameMap.getTile(Game.player.x + i, Game.player.y + j).color);
+                GameTile ref = Game.gameMap.getTile(Game.player.x + i , Game.player.y + j);
+                Color outline = ref.outline;
+                Color inline = ref.color;
+                g.setColor(outline);
                 g.fillRect(c, d, 32, 32);
-                g.setColor(Game.gameMap.getTile(i, j).outline);
+                g.setColor(inline);
                 g.drawRect(c + 1, d + 1, 30, 30);
+
+                //g.drawString(ref.type+"", c, d);
+
                 /*
                  * visible = wrangleNear(tracking, d, i);
                  * for (int k = 0; k < visible.length; k++) {
                  * //g.drawImage(visible[k].getGameSprite(), offsetx, offsety, Game.gameCamera);
                  * }
                  */
+                                if (!ref.onTile.empty()) {
+                    for (int k = 0; k < ref.onTile.size(); k++) {
+                        int x = ref.onTile.get(k).yoffset;
+                        int y = ref.onTile.get(k).xoffset;
+                        g.drawImage(GameCache.items[ref.onTile.get(k).sprite], c+x, d+y, getFocusCycleRootAncestor());
+                    }
+                }
             }
         }
             g.setColor(Color.green);
@@ -39,6 +52,18 @@ public class GameCamera extends Panel {
             g.drawImage(GameCache.bodies[0][Game.player.direction][Game.player.spriteIndex%3], 224, 238, this);
             g.drawImage(GameCache.pants[0][Game.player.direction][Game.player.spriteIndex%3], 224, 244, this);
             g.drawImage(GameCache.heads[0][Game.player.direction][0], 224, 226, this);
+
+            for (int i = 0; i < 9; i++) {
+                Item work = Game.player.inventory[i];
+
+                g.drawImage(GameCache.ui[0], 128+i*32, 438, this); // bg
+                int ass = Game.player.inhand*32;
+                g.drawRect(128+ass, 438, 32, 32);;//inhand
+
+                if (work!=null) {
+                g.drawImage(GameCache.items[Game.player.inventory[i].sprite], 128+i*32, 438, this);
+                }
+            }
             /*for (int i = 0; i < Game.gameMap.objex.length; i++) {
                 BufferedImage[] go = Game.gameMap.objex[i].face;
                 for (int j = 0; j < go.length; j++) {
@@ -55,6 +80,7 @@ public class GameCamera extends Panel {
     }
 
     GameCamera(Player p) {
+        GamePanel gp = new GamePanel();
         tracking = p;
         this.addKeyListener(p);
         setVisible(true);

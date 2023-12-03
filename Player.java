@@ -13,7 +13,8 @@ public class Player extends GameObject implements KeyListener {
     int px;
     int py;
     int inhand = 0;
-    Item[] inventory = new Item[30];
+    String msg;
+    Item[] inventory = new Item[9];
 
     public void spawn(int i, int j) {
         this.setLocation(i, j);
@@ -44,6 +45,9 @@ public class Player extends GameObject implements KeyListener {
                 py = -1;
                 yinertia = speed;
                 break;
+            case KeyEvent.VK_Z:
+                pickup();
+                break;
             default:
                 break;
         }
@@ -71,6 +75,16 @@ public class Player extends GameObject implements KeyListener {
                 yinertia = 0;
                 py = 0;
                 break;
+            case KeyEvent.VK_E:
+            inhand = (inhand + 1)%9;
+            break;
+            case KeyEvent.VK_Q:
+            inhand = (inhand - 1)%9;
+            if (inhand <0) {
+                inhand = 8;
+            }
+            case KeyEvent.VK_G:
+            //new GamePanel();
             default:
                 break;
         }
@@ -86,18 +100,28 @@ public class Player extends GameObject implements KeyListener {
         throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
     boolean pickup(Item i){
-        return pickup(i,0);
-    }
-    boolean pickup(Item i, int index){
-        if (inventory[index] == null) {
-            inventory[index] = i;
-            return true;    
+        for (int j = 0; j < inventory.length; j++) {
+            if (inventory[j] == null) {
+                inventory[j] = i;
+                break;
+            }
+            else if (inventory[j].type == i.type) {
+               if(i.count + inventory[j].count < inventory[j].maxStack){
+                i.count += inventory[j].count;
+               }
+               break;
+            }
         }
-        else if (index>30) {
-            return false;
-            
-        }
-        return pickup(i, (index+1)%30);
+        return true;
     }
-    
+    boolean pickup(){
+        Item i = Game.gameMap.getTile(x, y).onTile.peek();
+        if (i != null) {
+            pickup(i);
+        }
+        return alive;
+    }
+    void Speak(String s){
+        
+    }
 }

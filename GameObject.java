@@ -47,9 +47,16 @@ public abstract class GameObject extends Point2D{
     void spriteUpdate(){
         spriteIndex +=1;
     }
+    GameObject(){
+        uuid = validKeys;
+        validKeys +=1; 
+    }
     GameObject(int x, int y){
     this.setLocation(x, y);
         uuid = validKeys;
         validKeys +=1; 
+    }
+    void Speak(String s){
+        
     }
 }

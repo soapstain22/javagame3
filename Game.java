@@ -1,4 +1,5 @@
 
+import java.awt.List;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Game
  */
-public abstract class Game {
+public class Game {
     public static int TickCount = 0;
     public static GameMap gameMap;
     public static Chatblob chatblob;
@@ -16,17 +17,19 @@ public abstract class Game {
     public static Player player;
     public static GameCamera gameCamera;
     public static KeyListener k;
+    public static List items;
     boolean debug;
     public static void main(String[] args) throws IOException {
         System.out.println("Game.main()");
         GameCache.init();
-        Game.gameMap = new GameMap(2000,4);
+        Game.gameMap = new GameMap("download.png");
         Game.player = new Player(10,10);
         Game.chatblob = new Chatblob();
         Game.gameCamera = new GameCamera(player);
         GameWindow gw = new GameWindow();
         gw.setVisible(true);
         Game.Load(null);
+        Game.gameMap.spawn(ItemType.dollar);
         Runnable tick = new Runnable() {
     public void run() {
         Game.gameMap.update();

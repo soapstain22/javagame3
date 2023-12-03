@@ -1,5 +1,11 @@
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Dictionary;
+import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 public class GameMap {
     public static Noize nz;
@@ -15,11 +21,28 @@ public class GameMap {
         map = new GameTile[size][size];
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = new GameTile(nz.noise[i][j]);
+                map[i][j] = new GameTile((int) ImprovedNoise.noise(i, j, 0)/4);
             }
         }
-        objex = new GameObject[3];
+        for (int i = 0; i < map.length; i++) {
+            
+        }
+        objex = new GameObject[256];
         objex[1] = new Rock(2, 4);
+    }
+    public GameMap(String s) throws IOException{
+        File f = new File(s);
+        BufferedImage read = ImageIO.read(f);
+        if (read.getWidth() != read.getHeight()) {
+            System.out.println("not square image KILL YOURSELF!!!!!!");
+        }
+        size = read.getWidth();
+        map = new GameTile[read.getWidth()][read.getHeight()];
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map.length; x++) {
+                map[y][x] = new GameTile(read.getRGB(x, y));
+            }
+        }
     }
 
     GameTile getTile(double d, double e) {
@@ -53,5 +76,11 @@ public class GameMap {
 
     public void addObject(GameObject gameObject) {
 
+    }
+    public void spawn(ItemType item) {
+        spawn(item, Game.player.x, Game.player.y);
+    }
+    public void spawn(ItemType item, double x, double y) {
+        Game.gameMap.getTile(x, y).onTile.push(new Item(item));
     }
 }
