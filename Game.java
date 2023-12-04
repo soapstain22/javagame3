@@ -20,9 +20,8 @@ public class Game {
     public static List items;
     boolean debug;
     public static void main(String[] args) throws IOException {
-        System.out.println("Game.main()");
         GameCache.init();
-        Game.gameMap = new GameMap("download.png");
+        Game.gameMap = new GameMap("noiseTexture.png");
         Game.player = new Player(10,10);
         Game.chatblob = new Chatblob();
         Game.gameCamera = new GameCamera(player);

@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class GameMap {
     final int size;
     public static Dictionary<String, GameObject> g;
     final public static long seed = 451679238;
+    private int rgb;
 
     public GameMap(int size, int seed) {
         nz = new Noize(size);
@@ -24,11 +26,6 @@ public class GameMap {
                 map[i][j] = new GameTile((int) ImprovedNoise.noise(i, j, 0)/4);
             }
         }
-        for (int i = 0; i < map.length; i++) {
-            
-        }
-        objex = new GameObject[256];
-        objex[1] = new Rock(2, 4);
     }
     public GameMap(String s) throws IOException{
         File f = new File(s);
@@ -40,7 +37,9 @@ public class GameMap {
         map = new GameTile[read.getWidth()][read.getHeight()];
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map.length; x++) {
-                map[y][x] = new GameTile(read.getRGB(x, y));
+                rgb = read.getRGB(x, y);
+                Color c = new Color(rgb);
+                map[y][x] = new GameTile(c.getRed()%9);
             }
         }
     }
@@ -52,7 +51,7 @@ public class GameMap {
     }
 
     public static boolean isTilePassable(double d, double e) {
-        return GameMap.map[(int) d][(int) e].open;
+        return GameMap.map[(int) d][(int) e].t.isSolid();
     }
 
     public void update() {

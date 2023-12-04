@@ -24,24 +24,24 @@ public class Item {
     }
 }
 enum ItemType {
-    stick("Stick", "brown and sticky", 10, 1, 100, 5,1),
-    dollar("Dollar", "100 cents",10, 1, 100, 5,2),
-    penny("Penny", "1 cent", 10, 1, 100, 5,3),
-    dime("Dime", "10 cents", 10, 1, 100, 5,4),
-    quarter("Quarter", "25 cents", 10, 1, 100, 5,5),
+    stick("Stick", "brown and sticky", 10, 1, 100, 5,0),
+    dollar("Dollar", "100 cents",10, 1, 100, 5,1),
+    penny("Penny", "1 cent", 10, 1, 100, 5,2),
+    dime("Dime", "10 cents", 10, 1, 100, 5,3),
+    quarter("Quarter", "25 cents", 10, 1, 100, 5,4),
     nickel("Nickel", "5 cents", 10, 1, 100, 5,6),
-    plantpot("Plant Pot", "item", 10, 1, 100, 5,7),
-    lamp("lamp", "item", 10, 1, 100, 5,9),
-    dodgeball("Dodgeball", "item", 10, 1, 100, 5,10),
-    soda("sodi", "brown and sticky", 10, 1, 100, 5,11),
-    pot("pot", "brown and sticky", 10, 1, 100, 5,12),
-    pan("pan", "brown and sticky", 10, 1, 100, 5,13),
-    knife("knife", "brown and sticky", 10, 1, 100, 5,14),
-    dirt("pebble", "brown and sticky", 10, 1, 100, 5,15),
-    rock("stone", "brown and sticky", 10, 1, 100, 5,16), 
-    mug("mug", "brown and sticky", 10, 1, 100, 5,17),
-    sword("stone", "brown and sticky", 10, 1, 100, 5,18),
-    lighter("stone", "brown and sticky", 10, 1, 100, 5,19);
+    plantpot("Plant Pot", "plants go in it", 10, 1, 100, 5,7),
+    lamp("lamp", "bright!", 10, 1, 100, 5,9),
+    dodgeball("Dodgeball", "dodge this", 10, 1, 100, 5,10),
+    soda("sodi", "yummy", 10, 1, 100, 5,11),
+    pot("pot", "for soup and waters", 10, 1, 100, 5,12),
+    pan("pan", "cookin these eggs", 10, 1, 100, 5,13),
+    knife("knife", "attack tool", 10, 1, 100, 5,14),
+    dirt("pebble", "dirty", 10, 1, 100, 5,15),
+    rock("stone", "stoney", 10, 1, 100, 5,16), 
+    mug("mug", "very cup", 10, 1, 100, 5,17),
+    sword("sword", "SORD!!!", 10, 1, 100, 5,18),
+    lighter("lighter", "fire time", 10, 1, 100, 5,19);
 
 
     private final String name;

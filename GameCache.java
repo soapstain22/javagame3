@@ -14,6 +14,7 @@ public class GameCache {
     public static BufferedImage blocks[]; // 
     public static BufferedImage heart[]; // 
     public static BufferedImage ui[]; // 
+    public static BufferedImage tiles[]; // 
 
 
     Map<String, Integer> ImageTracker;
@@ -27,6 +28,7 @@ public class GameCache {
         heart = clogBuffer("Resources/img/ui/health.png");
         ui = clogBuffer("Resources/img/ui/ui.png");
         items = clogBuffer("Resources/img/objects/obj.png");
+        tiles = clogBuffer("Resources/img/tiles/tiles.png");
 
     }
     private static BufferedImage[] clogBuffer(String s) throws IOException{

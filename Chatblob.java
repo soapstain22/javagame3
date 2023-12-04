@@ -1,7 +1,9 @@
 import java.awt.Button;
-import java.awt.GridLayout;
 import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
+import java.awt.event.TextListener;
 
 public class Chatblob extends Panel{
     static ChatInput chatInput;
@@ -26,5 +28,32 @@ public class Chatblob extends Panel{
         this.add(chatBrick);
         this.add(chatButton);
         this.setVisible(true);
+    }
+    
+}
+class ChatBrick extends TextArea {
+    ChatBrick(){
+        this.setSize(250,400);
+        this.setLocation(480, 0);
+        this.setEditable(false);
+    }
+    
+}
+class Chat {
+    static void send(){
+        Chatblob.chatBrick.append(Chatblob.chatInput.getText());
+        
+    }
+    static void recieve(String msg, Player sender){
+
+    }
+}
+
+class ChatInput extends TextField{
+    String theContents = "burp";
+    TextListener textListener;
+    ChatInput(){
+        this.setSize(180,40);
+        this.setLocation(480, 400);
     }
 }
