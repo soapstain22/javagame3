@@ -8,6 +8,7 @@ import java.util.Stack;
 public class GameCamera extends Panel {
     Point2D tracking;
     int fc;
+    boolean inventoryOpen;
     GameTile[][] loaded;
 
     public void paint(Graphics g) {
@@ -22,8 +23,8 @@ public class GameCamera extends Panel {
                 int offsety = (((int) j * 32));
                 int c = (int) (offsetx - (Game.player.x * 32) % 32);
                 int d = (int) (offsety - (Game.player.y * 32) % 32);
-                GameTile ref = Game.gameMap.getTile(Game.player.x -7+ i, Game.player.y -8+ j);
-                g.drawImage(GameCache.tiles[ref.t.getSprite()],c, d,this);
+                GameTile ref = Game.gameMap.getTile(Game.player.x - 8 + i, Game.player.y - 8 + j);
+                g.drawImage(GameCache.tiles[ref.t.getSprite()], c, d, this);
                 if (!ref.onTile.empty()) {
                     for (int k = 0; k < ref.onTile.size(); k++) {
                         int x = ref.onTile.get(k).yoffset;
@@ -51,9 +52,8 @@ public class GameCamera extends Panel {
 
             if (work != null) {
                 g.drawImage(GameCache.items[Game.player.inventory[i].sprite], 128 + i * 32, 438, this);
-                g.drawString(work.count+"\n"+work.name,  128 + i * 32, 408);
-                g.drawString(work.desc,  128 + i * 32, 390);
-
+                g.drawString(work.count + "\n" + work.name, 128 + i * 32, 408);
+                g.drawString(work.desc, 128 + i * 32, 390);
             }
         }
         /*

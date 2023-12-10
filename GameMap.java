@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Dictionary;
-import java.util.Scanner;
-
 import javax.imageio.ImageIO;
 
 public class GameMap {
@@ -81,5 +79,40 @@ public class GameMap {
     }
     public void spawn(ItemType item, double x, double y) {
         Game.gameMap.getTile(x, y).onTile.push(new Item(item));
+    }
+    public void generateRoads(int recursivetype, int fuel){
+        GameTile[][] rds;
+        boolean vert;
+        int curx = 30;
+        int cury = 30;
+        for (int i = 0; i < fuel; i++) {
+            rds = new GameTile[size][size];
+            rds[]
+        }
+    }
+    public GameTile[][] roadSeg(int type){
+        GameTile[][] rs = new GameTile[5][5];
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                rs[i][j] = new GameTile(7);
+            }
+        }
+        switch (type) {
+            case 0:
+                for (int i = 0; i < 5; i++) {
+                    rs[0][i] = new GameTile(9);
+                    rs[4][i] = new GameTile(9);
+                }
+                break;
+                case 1:
+                for (int i = 0; i < 5; i++) {
+                    rs[i][0] = new GameTile(9);
+                    rs[i][4] = new GameTile(9);
+                }
+            default:
+                break;
+        }
+        return rs;
+        
     }
 }

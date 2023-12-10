@@ -1,9 +1,6 @@
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Comparator;
 public abstract class GameObject extends Point2D{
-    public static GameObject[] world;
     double x;
     double y;
     double xinertia;
@@ -58,5 +55,15 @@ public abstract class GameObject extends Point2D{
     }
     void Speak(String s){
         
+    }
+    enum ObjectType{
+        tree("tree","it grows", 0),
+        a("tree","it grows", 0);
+        ObjectType(String name, String desc, int n){
+
+        }
+        int get(){
+            return 3;
+        }
     }
 }
