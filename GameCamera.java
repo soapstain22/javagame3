@@ -52,7 +52,6 @@ public class GameCamera extends Panel {
                 g.drawImage(GameCache.items[Game.player.inventory[i].sprite], 128 + i * 32, 438, this);
                 g.drawString(work.count + "\n" + work.name, 128 + i * 32, 408);
                 g.drawString(work.desc, 128 + i * 32, 390);
-
             }
         }
     }

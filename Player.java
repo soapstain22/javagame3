@@ -106,8 +106,8 @@ public class Player extends GameObject implements KeyListener {
                 break;
             }
             else if (inventory[j].type == i.type) {
-               if(i.count + inventory[j].count < inventory[j].maxStack){
-                i.count += inventory[j].count;
+               if (i.count + inventory[j].count < inventory[j].maxStack){
+                inventory[j].count+=i.count;
                }
                break;
             }
@@ -117,7 +117,7 @@ public class Player extends GameObject implements KeyListener {
     boolean pickup(){
         Item i = Game.gameMap.getTile(x, y).onTile.peek();
         if (i != null) {
-            pickup(i);
+            pickup(Game.gameMap.getTile(x, y).onTile.pop());
         }
         return alive;
     }
