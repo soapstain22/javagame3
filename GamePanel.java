@@ -54,8 +54,7 @@ public class GamePanel extends Frame{
                 case 14:
                     itemType = ItemType.knife;
                     break;
-                                    default:
-
+                default:
                     itemType = ItemType.quarter;
                     break;
             }

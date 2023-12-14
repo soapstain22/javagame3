@@ -23,7 +23,7 @@ public class GameMap {
         map = new GameTile[size][size];
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                map[i][j] = new GameTile((int) ImprovedNoise.noise(i, j, 0)/4);
+                map[i][j] = new GameTile(TileType.sand);
             }
         }
     }
@@ -39,7 +39,41 @@ public class GameMap {
             for (int x = 0; x < map.length; x++) {
                 rgb = read.getRGB(x, y);
                 Color c = new Color(rgb);
-                map[y][x] = new GameTile(c.getRed()%9);
+                TileType gt;
+                switch (c.getRGB()) {
+                    case 16765303:
+                        gt = TileType.sand;
+                        break;
+                    case 11573943:
+                        gt = TileType.silt;
+                        break;
+                    case 839232:
+                        gt = TileType.grass;
+                        break;
+                    case 630833:
+                        gt = TileType.longgrass;
+                        break;
+                    case 12018483:
+                        gt = TileType.dirt;
+                        break;
+                    case 7821429:
+                        gt = TileType.stone;
+                        break;
+                    case 16764272:
+                        gt = TileType.wood;
+                        break;
+                    case 16735052:
+                        gt = TileType.log;
+                        break;
+                    case 13238234:
+                        gt = TileType.glass;
+                        break;
+                    default:
+                        gt = TileType.dirt;
+
+                        break;
+                }
+                map[y][x] = new GameTile(gt);
             }
         }
     }

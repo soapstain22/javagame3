@@ -18,24 +18,26 @@ public class Game {
     public static GameCamera gameCamera;
     public static KeyListener k;
     public static List items;
+    public static GameWindow gw;
     boolean debug;
     public static void main(String[] args) throws IOException {
         GameCache.init();
-        Game.gameMap = new GameMap("noiseTexture.png");
+        Game.gameMap = new GameMap("world.png");
         Game.player = new Player(10,10);
         Game.chatblob = new Chatblob();
         Game.gameCamera = new GameCamera(player);
-        GameWindow gw = new GameWindow();
+        gw = new GameWindow(true);
         gw.setVisible(true);
         Game.Load(null);
         Game.gameMap.spawn(ItemType.dollar);
+
+        MapPrefab p = new MapPrefab();
         Runnable tick = new Runnable() {
     public void run() {
         Game.gameMap.update();
-        Game.gameCamera.update();
         Game.player.update();
-        System.out.printf("player|"+(int)player.y+"y %5s| ", (int)player.x+"x");
-        System.out.printf("dir:"+player.direction+" %5s| %n", player.speed);
+                Game.gameCamera.update();
+
     }
 };
 
@@ -49,7 +51,7 @@ executor.scheduleAtFixedRate(tick, 0, 10, TimeUnit.MILLISECONDS);
     public Thread ticks = new Thread(()->extracted());
     private void extracted() {
         try {
-            Thread.sleep(10);
+            Thread.sleep(15);
             
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block

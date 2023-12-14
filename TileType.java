@@ -11,7 +11,9 @@ public enum TileType{
         wood(false,9,5),
         pavement(false,10,4),
         chess(false,11,4),
-        log(false,12,5);
+        log(false,12,5),
+        glass(false,12,5);
+
         private final boolean solid;
         private final int sprite;
         private final int sound;

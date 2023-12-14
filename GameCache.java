@@ -2,6 +2,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
 
@@ -15,15 +16,20 @@ public class GameCache {
     public static BufferedImage heart[]; // 
     public static BufferedImage ui[]; // 
     public static BufferedImage tiles[]; // 
-
+    public static BufferedImage title;
+    public static BufferedImage splash;
+    public static List saves;
 
     Map<String, Integer> ImageTracker;
 
     static void init() throws IOException {
+        title = ImageIO.read(new File("Resources/title.png"));
+        splash = ImageIO.read(new File("Resources/home.png"));
+
         heads = fillBuffer("Resources/img/player/head");
         bodies = fillBuffer("Resources/img/player/body");
         pants = fillBuffer("Resources/img/player/pants");
-        shirt = fillBuffer("Resources/img/player/shirt");
+        shirt = fillBuffer("Resources/img/player/body");
         blocks = clogBuffer("Resources/img/objects/foliage.png");
         heart = clogBuffer("Resources/img/ui/health.png");
         ui = clogBuffer("Resources/img/ui/ui.png");

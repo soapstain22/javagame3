@@ -122,6 +122,6 @@ public class Player extends GameObject implements KeyListener {
         return alive;
     }
     void Speak(String s){
-        
+        NetCon.sendMsg(this, s);
     }
 }
