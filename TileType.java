@@ -17,11 +17,19 @@ public enum TileType{
         private final boolean solid;
         private final int sprite;
         private final int sound;
-    
+        private final boolean dense;
+
         TileType(boolean solid, int sprite,int sound){
             this.solid = solid;
             this.sound = sound;
             this.sprite = sprite;
+            dense = true;
+        }
+        TileType(boolean solid, int sprite,int sound, boolean isVisible){
+            this.solid = solid;
+            this.sound = sound;
+            this.sprite = sprite;
+            this.dense = isVisible;
         }
         public int getSound() {
             return sound;
@@ -31,5 +39,8 @@ public enum TileType{
         }
         public boolean isSolid() {
             return solid;
+        }
+        public boolean getDense(){
+            return dense;
         }
     }

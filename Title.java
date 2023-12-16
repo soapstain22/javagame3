@@ -1,27 +1,43 @@
 import java.awt.Button;
 import java.awt.Checkbox;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
+import java.awt.LayoutManager2;
 import java.awt.List;
 import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
 
 import javax.swing.JCheckBox;
+import javax.swing.LayoutStyle;
 
 public class Title extends Panel {
 
     int state = 0;
-    Panel multiplayerConnect;
-    Panel multiplayerHost;
+    Panel multiplayer;
     Panel settingsPanel;
     Panel newGamePanel;
     Panel load;
+    Panel mainMenu;
 
     Title() {
-        multiplayerConnect = multiplayerConnectPanel();
-        multiplayerHost = multiplayerHostPanel();
+        GridBagLayout layout = new GridBagLayout();
+        GridBagConstraints g = new GridBagConstraints();
+
+        mainMenu = mainMenu();
+        mainMenu.setVisible(true);
+        this.add(mainMenu);
+
+        multiplayer = multiplayerConnectPanel();
+        multiplayer.setVisible(true);
+        this.add(multiplayer);
+
         settingsPanel = settingsPanel();
-        newGamePanel = newGamePanel();
-        load = new Panel();
-        this.add(mainMenu());
+        settingsPanel.setVisible(false);
+        this.add(settingsPanel);
+
         this.setSize(730, 470);
         this.setVisible(true);
     }
@@ -37,7 +53,7 @@ public class Title extends Panel {
     void menu(int i) {
         switch (i) {
             case 1:
-                multiplayerConnect.setVisible(true);
+                multiplayer.setVisible(true);
                 break;
             case 2:
                 Game.gw.gameTime();
@@ -46,10 +62,7 @@ public class Title extends Panel {
                 load.setVisible(true);
                 break;
             case 4:
-                multiplayerConnect.setVisible(true);
-                break;
-            case 5:
-                multiplayerConnect.setVisible(true);
+                settingsPanel.setVisible(true);
                 break;
             default:
                 break;
@@ -60,29 +73,70 @@ public class Title extends Panel {
     Panel settingsPanel() {
         Panel p = new Panel();
         Checkbox cb = new Checkbox("shit self");
+        Checkbox dev = new Checkbox("shit self");
+        Checkbox controls = new Checkbox("shit self");
+
+        p.setVisible(true);
+        p.setSize(500, 300);
+        p.setLocation(10, 10);
         p.add(cb);
         cb.setVisible(true);
+        controls.setVisible(true);
+
         return p;
 
     }
 
     Panel newGamePanel() {
-        
+
         return load;
 
     }
 
     Panel multiplayerHostPanel() {
         Panel p = new Panel();
-        List availableServers = new List(4);
-        availableServers.setSize(500, 500);
-        NetCon.getServers();
+
         return p;
     }
 
     Panel multiplayerConnectPanel() {
-        return load;
+        Button refresh = new Button();
+        refresh.setLabel("Refresh");
+        Button host = new Button();
+        host.setLabel("host");
+        TextField serverName = new TextField();
+        serverName.setName("server name");
+        Panel p = new Panel();
+        p.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        this.setLocation(200, 200);
+        this.setVisible(true);
+        List availableServers = new List(4);
+        NetCon.getServers();
+        availableServers.setVisible(true);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        p.add(host, c);
+        c.weightx = 0.5;
+        c.gridx = 1;
+        c.gridy = 0;
+        c.gridheight = 1;
+        p.add(serverName, c);
+        c.weightx = 0.5;
+        c.gridx = 2;
+        c.gridy = 0;
+        p.add(refresh, c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 40; // make this component tall
+        c.weightx = 0.0;
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 1;
+        p.add(availableServers, c);
+        p.setSize(500, 300);
 
+        return p;
     }
 
     Panel mainMenu() {
@@ -130,10 +184,12 @@ public class Title extends Panel {
         return p;
 
     }
-    Panel loadGame(){
+
+    Panel loadGame() {
         Panel p = new Panel();
         List l;
-        if (GameCache.saves!= null) {
+
+        if (GameCache.saves != null) {
             l = (List) GameCache.saves;
             p.add(l);
         }

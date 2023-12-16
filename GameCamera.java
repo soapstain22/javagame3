@@ -19,6 +19,7 @@ public class GameCamera extends Panel {
     }
 
     public void paintComponent(Graphics g) {
+        boolean[][] vis = new boolean[16][16];
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
                 // set color of background item
@@ -35,10 +36,11 @@ public class GameCamera extends Panel {
                         g.drawImage(GameCache.items[ref.onTile.get(k).sprite], c + x, d + y, this);
                     }
                 }
+                if (ref.t.isDense) {
+                    
+                }
             }
         }
-        g.setColor(Color.green);
-        g.setColor(Color.CYAN);
         g.drawImage(GameCache.bodies[0][Game.player.direction][Game.player.spriteIndex % 3], 224, 238, this);
         g.drawImage(GameCache.pants[0][Game.player.direction][Game.player.spriteIndex % 3], 224, 244, this);
         g.drawImage(GameCache.heads[0][Game.player.direction][0], 224, 226, this);

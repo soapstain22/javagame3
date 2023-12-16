@@ -4,20 +4,21 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
+import java.util.Queue;
 
 public class NetCon {
     static Socket socket;
+    static Socket Master;
+
     static InputStream inputStream;
     static OutputStream outputStream;
+        Queue<Byte[]> packets = new Queue<Byte[]>() {
+            
+        };
+
     static boolean TryConnect(SocketAddress socketAddress) throws IOException{
-        try {
-            socket.connect(socketAddress);
-        } catch (IOException e) {
-            System.out.println("NO!");
-            e.printStackTrace();
-        }
-        inputStream = socket.getInputStream();
-        outputStream = socket.getOutputStream();
+        socket.connect(socketAddress);
+        socket.getOutputStream();
         return false;
 
     }
@@ -28,6 +29,7 @@ public class NetCon {
     public static void sendMsg(Player player, String s) {
     }
     public static void updatePos(GameObject obj) throws IOException{
+        byte opcode = 1;
         byte[] x = ByteBuffer.allocate(4).putDouble(obj.x).array();
         byte[] y = ByteBuffer.allocate(4).putDouble(obj.y).array();
         byte[] id = ByteBuffer.allocate(3).putDouble(obj.uuid).array();
