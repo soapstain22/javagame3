@@ -4,12 +4,12 @@ public enum TileType{
         dirt(false,2,0),
         silt(false,3,0),
         clay(false,4,0),
-        stone(false,5,4),
+        stone(true,5,4),
         grass(false,6,2),
         longgrass(false,8,2),
         asphalt(false,7,4),
         wood(false,9,5),
-        pavement(false,10,4),
+        pavement(true,10,4),
         chess(false,11,4),
         log(false,12,5),
         glass(false,12,5);
@@ -23,7 +23,7 @@ public enum TileType{
             this.solid = solid;
             this.sound = sound;
             this.sprite = sprite;
-            dense = true;
+            this.dense = true;
         }
         TileType(boolean solid, int sprite,int sound, boolean isVisible){
             this.solid = solid;

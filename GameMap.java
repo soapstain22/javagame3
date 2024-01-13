@@ -7,16 +7,13 @@ import java.util.Dictionary;
 import javax.imageio.ImageIO;
 
 public class GameMap {
-    public static Noize nz;
     private static GameTile[][] map;
-    public GameObject[] objex;
     final int size;
     public static Dictionary<String, GameObject> g;
     final public static long seed = 451679238;
     private int rgb;
 
     public GameMap(int size, int seed) {
-        nz = new Noize(size);
         this.size = size;
         map = new GameTile[size][size];
         for (int i = 0; i < map.length; i++) {
@@ -39,43 +36,42 @@ public class GameMap {
                 Color c = new Color(rgb);
                 TileType gt;
                 switch (c.getRGB()) {
-                    case 16765303:
+                    case -15937984:
                         gt = TileType.sand;
                         break;
-                    case 11573943:
+                    case -5203273:
                         gt = TileType.silt;
                         break;
-                    case 839232:
+                    case -16146383:
                         gt = TileType.grass;
                         break;
-                    case 630833:
+                    case -4758733:
                         gt = TileType.longgrass;
                         break;
-                    case 12018483:
+                    case -8955787:
                         gt = TileType.dirt;
                         break;
-                    case 7821429:
+                    case -11913:
                         gt = TileType.stone;
                         break;
-                    case 16764272:
+                    case -8934913:
                         gt = TileType.wood;
                         break;
-                    case 16735052:
+                    case -8355693:
                         gt = TileType.log;
                         break;
-                    case 13238234:
+                    case -2035969:
                         gt = TileType.glass;
                         break;
                     default:
+                System.out.println(c.getRGB());
                         gt = TileType.dirt;
-
                         break;
                 }
                 map[y][x] = new GameTile(gt);
             }
         }
     }
-
     GameTile getTile(double d, double e) {
         int truex = (int) (d % size);
         int truey = (int) (e % size);
@@ -114,39 +110,6 @@ public class GameMap {
     public void spawn(ItemType item, double x, double y) {
         Game.gameMap.getTile(x, y).onTile.push(new Item(item));
     }
-    public void generateRoads(int recursivetype, int fuel){
-        GameTile[][] rds;
-        boolean vert;
-        int curx = 30;
-        int cury = 30;
-        for (int i = 0; i < fuel; i++) {
-            rds = new GameTile[size][size];
-            rds[]
-        }
-    }
-    public GameTile[][] roadSeg(int type){
-        GameTile[][] rs = new GameTile[5][5];
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                rs[i][j] = new GameTile(7);
-            }
-        }
-        switch (type) {
-            case 0:
-                for (int i = 0; i < 5; i++) {
-                    rs[0][i] = new GameTile(9);
-                    rs[4][i] = new GameTile(9);
-                }
-                break;
-                case 1:
-                for (int i = 0; i < 5; i++) {
-                    rs[i][0] = new GameTile(9);
-                    rs[i][4] = new GameTile(9);
-                }
-            default:
-                break;
-        }
-        return rs;
+
         
-    }
 }

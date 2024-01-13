@@ -44,7 +44,7 @@ class Chat {
         Chatblob.chatBrick.append(Chatblob.chatInput.getText());
         
     }
-    static void recieve(String msg, Player sender){
+    static void recieve(String msg){
 
     }
 }

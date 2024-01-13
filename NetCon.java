@@ -12,9 +12,6 @@ public class NetCon {
 
     static InputStream inputStream;
     static OutputStream outputStream;
-        Queue<Byte[]> packets = new Queue<Byte[]>() {
-            
-        };
 
     static boolean TryConnect(SocketAddress socketAddress) throws IOException{
         socket.connect(socketAddress);
@@ -38,7 +35,7 @@ public class NetCon {
         inputStream.read(null);
     }
     private static byte[] byteSize(double d){
-        Double.doubleToLongBits(obj.x);
+        return null;
 
     }
     public static void getServers() {

@@ -8,11 +8,5 @@ public class GameTile {
     TileType t = TileType.water;
     GameTile(TileType type){
         this.t = type;
-        
     }
-    short temperature = 293; //Boiling point of water is 373.15 K
-    byte brightness;
-    byte height;
-
-    
 }

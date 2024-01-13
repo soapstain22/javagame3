@@ -25,7 +25,6 @@ public class GameCache {
     static void init() throws IOException {
         title = ImageIO.read(new File("Resources/title.png"));
         splash = ImageIO.read(new File("Resources/home.png"));
-
         heads = fillBuffer("Resources/img/player/head");
         bodies = fillBuffer("Resources/img/player/body");
         pants = fillBuffer("Resources/img/player/pants");

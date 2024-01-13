@@ -71,25 +71,7 @@ public class GamePanel extends Frame{
         spawn.setSize(100,30);
         spawn.setVisible(true);
         spawn.setLocation(0,70);
-        items.add("stick");
-        items.add("sword");
-        items.add("mug");
-        items.add("lighter");
-        items.add("soda");
-        items.add("dodgeball");
-        items.add("dollar");
-        items.add("nickel");
-        items.add("penny");
-        items.add("quarter");
-        items.add("pot");
-        items.add("pan");
-        items.add("knife");
-        items.add("hammer");
-        items.add("shovel");
-        items.add("screwdriver");
-        items.add("wrench");
-        items.add("rock");
-        items.add("brick");
+ 
 
     }
     

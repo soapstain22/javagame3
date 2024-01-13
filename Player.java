@@ -15,6 +15,7 @@ public class Player extends GameObject implements KeyListener {
     int inhand = 0;
     String msg;
     Item[] inventory = new Item[9];
+    private int cooldown = 0;
 
     public void spawn(int i, int j) {
         this.setLocation(i, j);
@@ -45,8 +46,17 @@ public class Player extends GameObject implements KeyListener {
                 py = -1;
                 yinertia = speed;
                 break;
-            case KeyEvent.VK_Z:
+            case KeyEvent.VK_E:
                 pickup();
+                break;
+            case KeyEvent.VK_X:
+                attack();
+                break;
+            case KeyEvent.VK_Q:
+                drop();
+                break;
+            case KeyEvent.VK_Z:
+                use();
                 break;
             default:
                 break;
@@ -54,6 +64,12 @@ public class Player extends GameObject implements KeyListener {
                 this.direction = Direction.spriteMatrix[1+px][1+py];
 
         // TODO Auto-generated method stub
+    }
+
+    private void drop() {
+    }
+
+    private void use() {
     }
 
     @Override
@@ -123,5 +139,25 @@ public class Player extends GameObject implements KeyListener {
     }
     void Speak(String s){
         NetCon.sendMsg(this, s);
+    }
+
+    public boolean canSee(GameTile ref) {
+        
+        return false;
+    }
+    public boolean canSee(GameTile ref, int viewdist) {
+        
+        return false;
+    }
+    boolean attack(){
+        int a = (int) (this.x + px);
+        int b = (int) (this.y + py);
+        GameTile t = Game.gameMap.getTile(a, b);
+        boolean rt = false;
+        if (!t.objs.empty()) {
+            rt = t.objs.peek().attacked(1);
+            this.cooldown = 10;
+        }
+        return alive;
     }
 }

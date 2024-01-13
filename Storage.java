@@ -4,7 +4,7 @@ public class Storage {
 
     }
     Item getItem(int slot){
-        
+        return items[slot];
     }
 
 }
