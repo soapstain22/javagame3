@@ -7,6 +7,8 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
+import javax.sound.midi.Track;
+
 public class GameCamera extends Panel {
     Point2D tracking;
     int fc;
@@ -26,10 +28,9 @@ public class GameCamera extends Panel {
                 // set color of background item
                 int offsetx = (((int) i * 32));
                 int offsety = (((int) j * 32));
-                int c = (int) (offsetx - (tracking.getX() * 32) % 32);
-                int d = (int) (offsety - (tracking.getY() * 32) % 32);
-                GameTile ref = Game.gameMap.getTile(tracking.getX() - 8 + i, tracking.getY() - 8 + j);
-                vismap[i][j] = ref.t.getDense();
+                int c = (int) (offsetx - (Game.player.x * 32) % 32);
+                int d = (int) (offsety - (Game.player.y * 32) % 32);
+                GameTile ref = Game.gameMap.getTile(Game.player.x + i, Game.player.y  + j);
                 g.drawImage(GameCache.tiles[ref.t.getSprite()], c, d, this);
                 if (!ref.onTile.empty()) {
                     for (int k = 0; k < ref.onTile.size(); k++) {
@@ -39,11 +40,10 @@ public class GameCamera extends Panel {
                 if (!ref.objs.empty()) {
                     for (int k = 0; k < ref.objs.size(); k++) {
                         GameObject gb =ref.objs.get(k);
-                        g.drawImage(gb.getImage(), c+gb.subx, d+gb.suby, this);
+                        g.drawString(""+gb.hashCode(), c, d);
                     }
                 }
             }
-            vismap = GameCamera.shittyView(vismap);
         }
         if (inv) {
             for (int i = 0; i < 9; i++) {
@@ -111,10 +111,6 @@ public class GameCamera extends Panel {
         return vismap;
     }
 
-    public void update() {
-        repaint();
-    }
-
     @Override
     public void update(Graphics g) {
         lastImg = (BufferedImage) createImage(getWidth(), getHeight());
@@ -125,10 +121,10 @@ public class GameCamera extends Panel {
 
     GameCamera(Player p) {
         GamePanel gp = new GamePanel();
-        tracking = p;
         this.addKeyListener(p);
         setVisible(true);
         setBounds(200, 200, 480, 480);
+        tracking = new Point2D.Double(15, 15);
 
     }
 }

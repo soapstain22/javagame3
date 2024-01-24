@@ -25,6 +25,8 @@ public class Game {
     public static void main(String[] args) throws IOException {
         cli = new Client();
         GameCache.init();
+        GameObject.init();
+
         Game.gameMap = new GameMap("world.png");
         Game.player = new Player(10, 10);
         Game.chatblob = new Chatblob();
@@ -33,12 +35,18 @@ public class Game {
         gw.setVisible(true);
         Game.Load(null);
         Game.gameMap.spawn(ItemType.dollar);
-        MapPrefab p = new MapPrefab();
         Runnable tick = new Runnable() {
             public void run() {
                 Game.gameMap.update();
-                Game.player.update();
-                Game.gameCamera.update();
+                try {
+                    Server.main(null);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                while (!PacketEvent.jobs.isEmpty()) {
+                    PacketEvent.decrypt(PacketEvent.jobs.poll().job);
+                }
             }
         };
 

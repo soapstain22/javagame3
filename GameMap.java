@@ -3,17 +3,21 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.HashMap;
+
 import javax.imageio.ImageIO;
 
 public class GameMap {
     private static GameTile[][] map;
+    static HashMap<Integer, HashMap<Integer, ArrayList<GameObject>>> valids;
     final int size;
-    public static Dictionary<String, GameObject> g;
     final public static long seed = 451679238;
     private int rgb;
 
     public GameMap(int size, int seed) {
+        GameObject.objects = new HashMap<Long,GameObject>();
         this.size = size;
         map = new GameTile[size][size];
         for (int i = 0; i < map.length; i++) {
@@ -22,7 +26,8 @@ public class GameMap {
             }
         }
     }
-    public GameMap(String s) throws IOException{
+
+    public GameMap(String s) throws IOException {
         File f = new File(s);
         BufferedImage read = ImageIO.read(f);
         if (read.getWidth() != read.getHeight()) {
@@ -64,7 +69,7 @@ public class GameMap {
                         gt = TileType.glass;
                         break;
                     default:
-                System.out.println(c.getRGB());
+                        System.out.println(c.getRGB());
                         gt = TileType.dirt;
                         break;
                 }
@@ -72,44 +77,29 @@ public class GameMap {
             }
         }
     }
-    GameTile getTile(double d, double e) {
-        int truex = (int) (d % size);
-        int truey = (int) (e % size);
-        return map[truex][truey];
+
+    GameTile getTile(int d, int e) {
+        return map[d][e];
     }
 
-    public static boolean isTilePassable(double d, double e) {
-        return GameMap.map[(int) d][(int) e].t.isSolid();
+    public static boolean isTilePassable(int x, int y) {
+        return GameMap.map[x][y].t.isSolid();
     }
 
     public void update() {
 
-        Game.player.update();
     }
 
-    /*
-     * void mapRewrite(File f) throws IOException{
-     * BufferedImage b = ImageIO.read(f);
-     * for (int c = 0; c < map.length; c++) {
-     * for (int j = 0; j < map.length; j++) {
-     * //map[c][j] = new GameTile(b.getRGB(c, j));
-     * }
-     * }
-     * }
-     */
     public int mapSize() {
         return this.size;
     }
 
-    public void addObject(GameObject gameObject) {
-
-    }
     public void spawn(ItemType item) {
         spawn(item, Game.player.x, Game.player.y);
     }
-    public void spawn(ItemType item, double x, double y) {
+
+    public void spawn(ItemType item, int x, int y) {
         Game.gameMap.getTile(x, y).onTile.push(new Item(item));
     }
 
-        
 }
